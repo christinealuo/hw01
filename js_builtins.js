@@ -25,7 +25,11 @@ builtins.trim = function(str) {
     if (str[i] !== " ") {
       newStr += str[i];
     }
+    if (str[i] == " " && str[i - 1] !== " " && str[i + 1] !== " ") {
+      newStr += str[i];
+    }
   }
+  // window.alert(newStr);
   return newStr;
 };
 
@@ -45,10 +49,13 @@ builtins.trim = function(str) {
 // ex. builtins.search('Horizons', 'h') -> false
 
 builtins.search = function(sourceString, searchString) {
-  if (searchString.indexOf(sourceString)) {
-    return true;
-  } else {
+  // window.alert(typeof sourceString);
+  // window.alert(typeof searchString);
+  if (sourceString.indexOf(searchString) == -1) {
+    // window.alert("here!");
     return false;
+  } else {
+    return true;
   }
 };
 
@@ -65,6 +72,11 @@ builtins.search = function(sourceString, searchString) {
 // ex. builtins.reverse([123]) -> [123]
 
 builtins.reverse = function(arr) {
-  let next = arr.unshift();
-  return builtins.reverse(arr).concat(next);
+  var ret = new Array;
+  // window.alert(ret);
+  for(var i = arr.length - 1; i >= 0; i--) {
+    ret.push(arr[i]);
+  }
+  // window.alert(ret);
+  return ret;
 };
